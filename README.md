@@ -9,6 +9,50 @@ Users will receive score based on correct answer, number of incorrect guesses, a
 
 ## ERD
 
+table users {
+  id int
+  picURL varchar
+  username varchar
+  name varchar
+  email varchar
+}
+
+table Game { 
+  id int
+  Rounds int
+  Genre varchar
+  WinnerId varchar
+}
+
+table GameUsers {
+  id int
+  userID varchar
+  gameId int
+}
+
+table GameRounds {
+  id int
+  GameId int
+  SongId varchar
+  
+}
+
+table friends {
+  id int
+  userId int
+  friendId int
+}
+
+Ref: "users"."id" < "friends"."userId"
+
+Ref: "friends"."friendId" < "users"."id"
+
+Ref: "GameUsers"."userID" < "users"."id"
+
+Ref: "GameUsers"."gameId" < "Game"."id"
+
+Ref: "GameRounds"."GameId" < "Game"."id"
+
 ## Tech to be Used
 SQL database
 Spotify API
